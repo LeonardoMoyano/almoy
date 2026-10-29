@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ALMOY - Finalizar Compra</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#0667f9",
+                    "secondary": "#22d3ee",
+                    "background-light": "#f5f7f8",
+                    "background-dark": "#0f1723",
+                },
+                fontFamily: {
+                    "display": ["Space Grotesk", "sans-serif"]
+                },
+            },
+        },
+    }
+</script>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+    }
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+
+<header class="flex items-center justify-between border-b border-white/10 px-6 lg:px-16 py-4 bg-[#101823]">
+  <div class="flex items-center gap-2 text-white">
+    <span class="material-symbols-outlined text-secondary" style="font-size: 32px;">widgets</span>
+    <h2 class="text-white text-xl font-bold">ALMOY</h2>
+  </div>
+  <div class="flex items-center gap-4">
+    <div class="hidden lg:flex items-center gap-9">
+      <a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="inicio.php">Inicio</a>
+      <a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="catalogo.php">Catálogo</a>
+      <a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="contacto.php">Contacto</a>
+    </div>
+  </div>
+</header>
+
+<div class="flex justify-center items-start min-h-screen p-6">
+<main class="w-full max-w-4xl bg-white dark:bg-[#182335] rounded-xl p-8 shadow-2xl">
+<div class="flex items-center gap-3 mb-6">
+<button onclick="window.location.href='carrito.html'" class="text-gray-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">arrow_back</span>
+</button>
+<h2 class="text-3xl font-bold text-gray-900 dark:text-white">Finalizar Compra</h2>
+</div>
+
+<div id="contenedor-productos" class="space-y-4 mb-6 max-h-[300px] overflow-y-auto">
+</div>
+
+<div class="border-t border-gray-200 dark:border-white/10 mt-6 pt-6">
+<div class="space-y-3 mb-6">
+<div class="flex justify-between text-gray-800 dark:text-gray-300 text-lg">
+<span>Subtotal</span>
+<span id="subtotal-display">$0.00</span>
+</div>
+<div class="flex justify-between text-gray-800 dark:text-gray-300 text-lg">
+<span>Envío</span>
+<span>Gratis</span>
+</div>
+<div class="flex justify-between text-gray-800 dark:text-gray-300 text-lg">
+<span>Intereses (<span id="porcentaje-interes">0</span>%)</span>
+<span id="interes-display">$0.00</span>
+</div>
+<div class="flex justify-between text-gray-900 dark:text-white text-2xl font-bold border-t border-gray-200 dark:border-white/10 pt-3">
+<span>Total</span>
+<span id="total-display">$0.00</span>
+</div>
+</div>
+
+<div class="mb-6">
+<h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Seleccionar Método de Pago</h3>
+<div class="grid grid-cols-2 gap-4">
+<label class="flex items-center p-4 rounded-lg cursor-pointer border-2 border-gray-300 dark:border-gray-600 has-[:checked]:border-primary has-[:checked]:bg-primary/10 transition-all">
+<input checked class="form-radio text-primary focus:ring-primary" name="payment" type="radio" value="efectivo" onchange="calcularTotal()"/>
+<span class="ml-3 text-gray-900 dark:text-white font-medium">Efectivo</span>
+</label>
+<label class="flex items-center p-4 rounded-lg cursor-pointer border-2 border-gray-300 dark:border-gray-600 has-[:checked]:border-primary has-[:checked]:bg-primary/10 transition-all">
+<input class="form-radio text-primary focus:ring-primary" name="payment" type="radio" value="credito" onchange="calcularTotal()"/>
+<span class="ml-3 text-gray-900 dark:text-white font-medium">Tarjeta de Crédito</span>
+</label>
+<label class="flex items-center p-4 rounded-lg cursor-pointer border-2 border-gray-300 dark:border-gray-600 has-[:checked]:border-primary has-[:checked]:bg-primary/10 transition-all">
+<input class="form-radio text-primary focus:ring-primary" name="payment" type="radio" value="debito" onchange="calcularTotal()"/>
+<span class="ml-3 text-gray-900 dark:text-white font-medium">Tarjeta de Débito</span>
+</label>
+<label class="flex items-center p-4 rounded-lg cursor-pointer border-2 border-gray-300 dark:border-gray-600 has-[:checked]:border-primary has-[:checked]:bg-primary/10 transition-all">
+<input class="form-radio text-primary focus:ring-primary" name="payment" type="radio" value="transferencia" onchange="calcularTotal()"/>
+<span class="ml-3 text-gray-900 dark:text-white font-medium">Transferencia Bancaria</span>
+</label>
+</div>
+</div>
+
+<button onclick="completarCompra()" class="w-full flex items-center justify-center rounded-lg h-14 px-6 bg-primary text-white text-xl font-bold hover:bg-primary/90 transition-colors shadow-lg">
+<span class="material-symbols-outlined mr-2">shopping_bag</span>
+Comprar
+</button>
+</div>
+</main>
+</div>
+
+<div class="fixed inset-0 bg-black/60 flex items-center justify-center hidden z-50" id="confirmation-modal">
+<div class="bg-white dark:bg-[#182335] rounded-xl p-8 max-w-md w-full m-4 text-center shadow-2xl">
+<div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-secondary mb-6">
+<span class="material-symbols-outlined text-5xl text-black">check</span>
+</div>
+<h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-3">¡Compra Exitosa!</h2>
+<p class="text-gray-600 dark:text-gray-300 mb-2 text-lg">Monto total: <span class="font-bold text-secondary" id="modal-total">$0.00</span></p>
+<p class="text-gray-600 dark:text-gray-300 mb-6">Método de pago: <span class="font-bold" id="modal-metodo">Efectivo</span></p>
+<div class="flex flex-col gap-3">
+<button onclick="nuevaCompra()" class="w-full flex items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-lg font-bold hover:bg-primary/90 transition-colors">
+<span class="truncate">Nueva Compra</span>
+</button>
+<button onclick="volverInicio()" class="w-full flex items-center justify-center rounded-lg h-12 px-6 bg-gray-200 dark:bg-[#21314a] text-gray-900 dark:text-white text-lg font-bold hover:bg-gray-300 dark:hover:bg-[#2b3e5a] transition-colors">
+<span class="truncate">Volver al Inicio</span>
+</button>
+</div>
+</div>
+</div>
+
+<script src="carrito-manager.js"></script>
+<script>
+let subtotal = 0;
+
+function cargarProductos() {
+    const items = window.carrito.items;
+    const contenedor = document.getElementById('contenedor-productos');
+    
+    if (items.length === 0) {
+        contenedor.innerHTML = '<div class="text-center py-8 text-gray-500">No hay productos en el carrito</div>';
+        setTimeout(() => {
+            window.location.href = 'catalogo.php';
+        }, 2000);
+        return;
+    }
+    
+    let html = '';
+    subtotal = 0;
+    
+    items.forEach(item => {
+        const subtotalItem = item.precio * item.cantidad;
+        subtotal += subtotalItem;
+        
+        html += `
+        <div class="flex items-center gap-4 bg-gray-50 dark:bg-[#21314a] p-4 rounded-lg">
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-16" style="background-image: url('${item.imagen}');"></div>
+            <div class="flex-1">
+                <p class="text-gray-900 dark:text-white text-base font-semibold">${item.nombre}</p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">Cantidad: ${item.cantidad}</p>
+            </div>
+            <div class="text-right">
+                <p class="text-gray-900 dark:text-white font-bold text-lg">$${subtotalItem.toFixed(2)}</p>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">$${item.precio.toFixed(2)} c/u</p>
+            </div>
+        </div>
+        `;
+    });
+    
+    contenedor.innerHTML = html;
+    calcularTotal();
+}
+
+function calcularTotal() {
+    const metodoSeleccionado = document.querySelector('input[name="payment"]:checked').value;
+    let porcentajeInteres = 0;
+    
+    if (metodoSeleccionado === 'credito') {
+        porcentajeInteres = 10;
+    } else if (metodoSeleccionado === 'debito') {
+        porcentajeInteres = 5;
+    } else {
+        porcentajeInteres = 0;
+    }
+    
+    const interes = subtotal * (porcentajeInteres / 100);
+    const total = subtotal + interes;
+    
+    document.getElementById('subtotal-display').textContent = '$' + subtotal.toFixed(2);
+    document.getElementById('porcentaje-interes').textContent = porcentajeInteres;
+    document.getElementById('interes-display').textContent = '$' + interes.toFixed(2);
+    document.getElementById('total-display').textContent = '$' + total.toFixed(2);
+}
+
+function completarCompra() {
+    const metodoSeleccionado = document.querySelector('input[name="payment"]:checked').value;
+    const metodosTexto = {
+        'efectivo': 'Efectivo',
+        'credito': 'Tarjeta de Crédito',
+        'debito': 'Tarjeta de Débito',
+        'transferencia': 'Transferencia Bancaria'
+    };
+    
+    const items = window.carrito.items;
+    const porcentajeInteres = metodoSeleccionado === 'credito' ? 10 : (metodoSeleccionado === 'debito' ? 5 : 0);
+    const interes = subtotal * (porcentajeInteres / 100);
+    const total = subtotal + interes;
+    const datosVenta = {
+        subtotal: subtotal,
+        interes: interes,
+        total: total,
+        metodo_pago: metodosTexto[metodoSeleccionado],
+        productos: items
+    };
+    
+    fetch('procesar_venta.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datosVenta)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById('modal-total').textContent = '$' + total.toFixed(2);
+            document.getElementById('modal-metodo').textContent = metodosTexto[metodoSeleccionado];
+            document.getElementById('confirmation-modal').classList.remove('hidden');
+            
+            window.carrito.vaciarCarrito();
+        } else {
+            alert('Error al procesar la compra: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al procesar la compra. Intente nuevamente.');
+    });
+}
+
+function nuevaCompra() {
+    document.getElementById('confirmation-modal').classList.add('hidden');
+    window.location.href = 'catalogo.php';
+}
+
+function volverInicio() {
+    document.getElementById('confirmation-modal').classList.add('hidden');
+    window.location.href = 'inicio.php';
+}
+
+document.addEventListener('DOMContentLoaded', cargarProductos);
+</script>
+</body>
+</html>

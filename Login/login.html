@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesión - ALMOY</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Nunito:wght@700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0066ff',
+            secondary: '#00b4d8',
+            background: {
+              light: '#f5f7fa',
+              dark: '#0b1622'
+            },
+          },
+          fontFamily: {
+            display: ['Nunito', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+      darkMode: 'media',
+    };
+  </script>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display">
+  <div class="min-h-screen w-full bg-gradient-to-br from-background-light to-[#E0E0E0] dark:from-background-dark dark:to-[#1a2a3a] flex justify-center items-center overflow-y-auto py-8 px-4">
+
+    <div class="flex flex-col w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl gap-8 p-6 sm:p-8 md:p-10 rounded-2xl bg-white/80 dark:bg-[#182335] shadow-xl transition-all duration-300 mx-auto">
+      
+      <div class="text-center space-y-2">
+        <div class="flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-4xl sm:text-5xl">widgets</span>
+          <h2 class="text-slate-900 dark:text-white text-2xl sm:text-3xl font-bold">ALMOY</h2>
+        </div>
+        <p class="text-slate-900 dark:text-white text-3xl sm:text-4xl font-black leading-tight">Bienvenido de Nuevo</p>
+        <p class="text-slate-600 dark:text-[#8ea7cc] text-sm sm:text-base">Inicia Sesión</p>
+      </div>
+
+      <form class="flex flex-col gap-4 w-full" method="POST" action="../Login/login.php">
+        <label class="flex flex-col">
+          <p class="text-slate-900 dark:text-white text-base font-medium pb-2">Correo Electrónico</p>
+          <input type="email" name="correo" placeholder="Ingresa tu correo electrónico"
+            class="form-input w-full rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary border-none bg-[#E0E0E0] dark:bg-[#21314a] h-12 sm:h-14 p-3 sm:p-4 text-base placeholder:text-slate-500 dark:placeholder:text-[#8ea7cc] hover:ring-2 hover:ring-secondary/50 transition-all duration-300" required>
+        </label>
+
+        <label class="flex flex-col">
+  <p class="text-slate-900 dark:text-white text-base font-medium pb-2">Contraseña</p>
+  <div class="relative">
+    <input type="password" name="password" id="loginPassword" placeholder="Ingresa tu contraseña"
+      class="form-input w-full rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary border-none bg-[#E0E0E0] dark:bg-[#21314a] h-12 sm:h-14 p-3 sm:p-4 text-base placeholder:text-slate-500 dark:placeholder:text-[#8ea7cc] hover:ring-2 hover:ring-secondary/50 transition-all duration-300"
+      required>
+    <button type="button" id="toggleLoginPassword"
+      class="absolute inset-y-0 right-0 flex items-center pr-4 text-slate-600 dark:text-[#8ea7cc] hover:text-secondary">
+      <span class="material-symbols-outlined">visibility</span>
+    </button>
+  </div>
+</label>
+
+        <button type="submit"
+          class="flex items-center justify-center h-12 sm:h-14 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 hover:shadow-lg transition-all duration-300 text-base sm:text-lg">
+          Iniciar Sesión
+        </button>
+      </form>
+
+      <div class="text-center space-y-2">
+        <p class="text-slate-900 dark:text-white text-sm sm:text-base">
+          ¿No tienes una cuenta?
+          <a href="registro.html" class="font-bold text-primary hover:text-secondary transition-colors">Regístrate</a>
+        </p>
+      </div>
+    </div>
+  </div>
+<script>
+  const loginPassword = document.getElementById('loginPassword');
+  const toggleLoginPassword = document.getElementById('toggleLoginPassword');
+
+  toggleLoginPassword.addEventListener('click', () => {
+    const isHidden = loginPassword.type === 'password';
+    loginPassword.type = isHidden ? 'text' : 'password';
+    toggleLoginPassword.querySelector('span').textContent = isHidden ? 'visibility_off' : 'visibility';
+  });
+</script>
+</body>
+</html>

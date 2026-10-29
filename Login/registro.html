@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALMOY - Registro</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#0667f9",
+            secondary: "#22d3ee",
+            "background-light": "#f5f7f8",
+            "background-dark": "#0f1723",
+          },
+          fontFamily: {
+            display: ["Space Grotesk", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+  <div class="min-h-screen w-full bg-gradient-to-br from-background-light to-[#E0E0E0] dark:from-background-dark dark:to-[#1a2a3a] flex justify-center items-center overflow-y-auto py-8 px-4">
+    
+    <div class="flex flex-col w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl gap-8 p-6 sm:p-8 md:p-10 rounded-2xl bg-white/80 dark:bg-[#182335] shadow-xl transition-all duration-300 mx-auto">
+      
+      <div class="text-center space-y-2">
+        <div class="flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-4xl sm:text-5xl">widgets</span>
+          <h2 class="text-slate-900 dark:text-white text-2xl sm:text-3xl font-bold">ALMOY</h2>
+        </div>
+        <p class="text-slate-900 dark:text-white text-3xl sm:text-4xl font-black leading-tight">Crear Cuenta</p>
+        <p class="text-slate-600 dark:text-[#8ea7cc] text-sm sm:text-base">Regístrate</p>
+      </div>
+
+      <form class="flex flex-col gap-4 w-full" method="POST" action="registro.php">
+        <label class="flex flex-col">
+          <p class="text-slate-900 dark:text-white text-base font-medium pb-2">Nombre Completo</p>
+          <input type="text" name="nombre" placeholder="Ingresa nombre completo"
+            class="form-input w-full rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary border-none bg-[#E0E0E0] dark:bg-[#21314a] h-12 sm:h-14 p-3 sm:p-4 text-base placeholder:text-slate-500 dark:placeholder:text-[#8ea7cc] hover:ring-2 hover:ring-secondary/50 transition-all duration-300" required>
+        </label>
+
+        <label class="flex flex-col">
+          <p class="text-slate-900 dark:text-white text-base font-medium pb-2">Correo Electrónico</p>
+          <input type="email" name="correo" placeholder="Ingresa correo electrónico"
+            class="form-input w-full rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary border-none bg-[#E0E0E0] dark:bg-[#21314a] h-12 sm:h-14 p-3 sm:p-4 text-base placeholder:text-slate-500 dark:placeholder:text-[#8ea7cc] hover:ring-2 hover:ring-secondary/50 transition-all duration-300" required>
+        </label>
+
+        <label class="flex flex-col">
+  <p class="text-slate-900 dark:text-white text-base font-medium pb-2">Contraseña</p>
+  <div class="relative">
+    <input type="password" name="password" id="password" placeholder="Crea una contraseña"
+      class="form-input w-full rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary border-none bg-[#E0E0E0] dark:bg-[#21314a] h-12 sm:h-14 p-3 sm:p-4 text-base placeholder:text-slate-500 dark:placeholder:text-[#8ea7cc] hover:ring-2 hover:ring-secondary/50 transition-all duration-300"
+      required>
+    <button type="button" id="togglePassword"
+      class="absolute inset-y-0 right-0 flex items-center pr-4 text-slate-600 dark:text-[#8ea7cc] hover:text-secondary">
+      <span class="material-symbols-outlined">visibility</span>
+    </button>
+  </div>
+</label>
+
+        <label class="flex flex-col">
+  <p class="text-slate-900 dark:text-white text-base font-medium pb-2">Confirmar Contraseña</p>
+  <div class="relative">
+    <input type="password" name="confirmar" id="confirmar" placeholder="Repite tu contraseña"
+      class="form-input w-full rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary border-none bg-[#E0E0E0] dark:bg-[#21314a] h-12 sm:h-14 p-3 sm:p-4 text-base placeholder:text-slate-500 dark:placeholder:text-[#8ea7cc] hover:ring-2 hover:ring-secondary/50 transition-all duration-300"
+      required>
+    <button type="button" id="toggleConfirmar"
+      class="absolute inset-y-0 right-0 flex items-center pr-4 text-slate-600 dark:text-[#8ea7cc] hover:text-secondary">
+      <span class="material-symbols-outlined">visibility</span>
+    </button>
+  </div>
+</label>
+
+        <button type="submit"
+          class="flex items-center justify-center h-12 sm:h-14 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 hover:shadow-lg transition-all duration-300 text-base sm:text-lg">
+          Registrarse
+        </button>
+      </form>
+
+      <div class="text-center space-y-2">
+        <p class="text-slate-900 dark:text-white text-sm sm:text-base">
+          ¿Ya tienes una cuenta?
+          <a href="login.html" class="font-bold text-primary hover:text-secondary transition-colors">Inicia sesión</a>
+        </p>
+      </div>
+    </div>
+  </div>
+<script>
+  const password = document.getElementById('password');
+  const confirmar = document.getElementById('confirmar');
+  const togglePassword = document.getElementById('togglePassword');
+  const toggleConfirmar = document.getElementById('toggleConfirmar');
+
+  togglePassword.addEventListener('click', () => {
+    const isHidden = password.type === 'password';
+    password.type = isHidden ? 'text' : 'password';
+    togglePassword.querySelector('span').textContent = isHidden ? 'visibility_off' : 'visibility';
+  });
+
+  toggleConfirmar.addEventListener('click', () => {
+    const isHidden = confirmar.type === 'password';
+    confirmar.type = isHidden ? 'text' : 'password';
+    toggleConfirmar.querySelector('span').textContent = isHidden ? 'visibility_off' : 'visibility';
+  });
+</script>
+</body>
+</html>
